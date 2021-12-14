@@ -26,5 +26,9 @@ public class TaskServiceImpl implements TaskServices {
         List<TaskModel> taskList = taskRepo.findAll();
         return taskList;
     }
+
+    public TaskModel getTaskById(Long id){
+       return taskRepo.findById(id).get();
+    }
 }
 

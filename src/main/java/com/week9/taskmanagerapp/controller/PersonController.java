@@ -36,6 +36,12 @@ public class PersonController {
         if(session != null){
             List<TaskModel> list = taskService.getAllTasks();
             model.addAttribute("taskList", list);
+
+
+            String fullName = (String) session.getAttribute("fullName");
+            Long posterId = (Long) session.getAttribute("personId");
+            model.addAttribute("fullName", fullName);
+            model.addAttribute("posterId", posterId);
             return "homePage";
         }
         return "index";
@@ -64,7 +70,7 @@ public class PersonController {
         if(email.equals(person.getEmail()) && password.equals(person.getPassword())){
             HttpSession session = request.getSession();
             session.setAttribute("personId", personService.getUserByEmail(email).getPersonId());
-            session.setAttribute("fullname", personService.getUserByEmail(email).getFirstName() + " " + personService.getUserByEmail(email).getFirstName());
+            session.setAttribute("fullName", personService.getUserByEmail(email).getFirstName() + " " + personService.getUserByEmail(email).getFirstName());
             System.out.println(personService.getUserByEmail(email).getPersonId());
             return "redirect:/";
         }

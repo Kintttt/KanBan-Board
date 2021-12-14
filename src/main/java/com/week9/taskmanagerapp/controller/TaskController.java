@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,6 +38,46 @@ public class TaskController {
 
         TaskModel newTask = new TaskModel(task.getTaskTitle(), task.getTaskDescription(),task.getTaskTag(), status, personId, personNames);
         taskService.addTask(newTask);
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/completed/{taskId}")
+    public String markCompleted(@PathVariable String taskId, HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+        Long id = Long.parseLong(taskId);
+
+        TaskModel taskModel = taskService.getTaskById(id);
+        taskModel.setTaskStatus("Completed");
+        taskService.addTask(taskModel);
+
+        return "redirect:/";
+    }
+
+
+    @RequestMapping(path = "/inprogress/{taskId}")
+    public String markInProgress(@PathVariable String taskId, HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+        Long id = Long.parseLong(taskId);
+
+        TaskModel taskModel = taskService.getTaskById(id);
+        taskModel.setTaskStatus("Inprogress");
+        taskService.addTask(taskModel);
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/backlogs/{taskId}")
+    public String markBacklogs(@PathVariable String taskId, HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+        Long id = Long.parseLong(taskId);
+
+        TaskModel taskModel = taskService.getTaskById(id);
+        taskModel.setTaskStatus("Backlogs");
+        taskService.addTask(taskModel);
+
         return "redirect:/";
     }
 

@@ -31,7 +31,7 @@
             Created By Me
             <span class="count">2</span>
         </h3>
-        <div class="card">
+        <div class="card" th:each="task: ${taskList}" th:if="${task.getPosterId() == posterId}">
             <div class="dropdown">
                     <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
                           aria-expanded="false">
@@ -47,33 +47,10 @@
                     <li><a class="dropdown-item" href="#">Completed</a></li>
                 </ul>
             </div>
-            <p class="title">Lorem ipsum it.</p>
-            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <p class="title" th:text="${task.getTaskTitle()}">Lorem ipsum it.</p>
+            <p class="description" th:text="${task.getTaskDescription()}">lorem ipsum dolor sit amet consectetur adip</p>
             <div class='bottom_actions'>
                 <span class="tag completed">Completed</span>
-                <span class="view">view</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="dropdown">
-                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                    </span>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li style="padding-left: 15px">Move To</li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
-                    <li><a class="dropdown-item" href="#">In Progress</a></li>
-                    <li><a class="dropdown-item" href="#">Completed</a></li>
-                </ul>
-            </div>
-            <p class="title">Lorem ipsum it.</p>
-            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
-            <div class='bottom_actions'>
-                <span class="tag backlog">Backlog</span>
                 <span class="view">view</span>
             </div>
         </div>
@@ -87,7 +64,7 @@
             <span class="count">2</span>
         </h3>
 
-        <div class="card">
+        <div class="card" th:each="task: ${taskList}" th:if="${task.getTaskStatus() == 'Backlogs'}">
             <div class="dropdown">
                     <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
                           aria-expanded="false">
@@ -98,17 +75,19 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
-                    <li><a class="dropdown-item" href="#">In Progress</a></li>
-                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                    <li><a class="dropdown-item" href="" th:href="${'inprogress/' + task.getTaskId()}">In Progress</a></li>
+                    <li><a class="dropdown-item" href="" th:href="${'completed/' + task.getTaskId()}">Completed</a></li>
                 </ul>
             </div>
-            <p class="title">Lorem ipsum it.</p>
-            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
-            <div class='bottom_actions'>
-                <p class="created_by">created by: Rebecca</p>
-                <span class="view">view</span>
+            <div>
+                    <p class="title" th:text="${task.getTaskTitle()}">Lorem ipsum it.</p>
+                    <p class="description" th:text="${task.getTaskDescription()}">lorem ipsum dolor sit amet consectetur adip</p>
+                    <div class='bottom_actions'>
+                        <p class="created_by" th:text="'Created by: ' + ${fullName}">created by: Rebecca</p>
+                        <span class="view">view</span>
+                    </div>
             </div>
+
         </div>
 
         <div class=" add " data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -119,13 +98,15 @@
 <!--    backlogs ends here-->
 
 
-    <div class="column in_progress">
+
+<!--    Inprogress tasks start here-->
+    <div class="column in_progress" >
         <h3 class="label">
             In Progress
             <span class="count">2</span>
         </h3>
 
-        <div class="card">
+        <div class="card" th:each="task: ${taskList}" th:if="${task.getTaskStatus() == 'Inprogress'}">
             <div class="dropdown">
                     <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
                           aria-expanded="false">
@@ -136,49 +117,27 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
-                    <li><a class="dropdown-item" href="#">In Progress</a></li>
-                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                    <li><a class="dropdown-item" href="" th:href="${'backlogs/' + task.getTaskId()}">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="" th:href="${'completed/' + task.getTaskId()}">Completed</a></li>
                 </ul>
             </div>
-            <p class="title">Lorem ipsum it.</p>
-            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
-            <div class='bottom_actions'>
-                <p class="created_by">created by: Rebecca</p>
-                <span class="view">view</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="dropdown">
-                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                    </span>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li style="padding-left: 15px">Move To</li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
-                    <li><a class="dropdown-item" href="#">In Progress</a></li>
-                    <li><a class="dropdown-item" href="#">Completed</a></li>
-                </ul>
-            </div>
-            <p class="title">Lorem ipsum it.</p>
-            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
-            <div class='bottom_actions'>
-                <p class="created_by">created by: Rebecca</p>
-                <span class="view">view</span>
-            </div>
+                <p class="title" th:text="${task.getTaskTitle()}">Lorem ipsum it.</p>
+                <p class="description" th:text="${task.getTaskDescription()}">lorem ipsum dolor sit amet consectetur adip</p>
+                <div class='bottom_actions'>
+                    <p class="created_by" th:text="'Created by: ' + ${fullName}">created by: Rebecca</p>
+                    <span class="view">view</span>
+                </div>
         </div>
     </div>
+
+<!--    Completed tasks start here-->
     <div class="column completed">
         <h3 class="label">
             Completed
             <span class="count">2</span>
 
         </h3>
-        <div class="card">
+        <div class="card" th:each="task: ${taskList}" th:if="${task.getTaskStatus() == 'Completed'}">
             <div class="dropdown">
                     <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
                           aria-expanded="false">
@@ -189,19 +148,19 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
-                    <li><a class="dropdown-item" href="#">In Progress</a></li>
-                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                    <li><a class="dropdown-item" href="" th:href="${'backlogs/' + task.getTaskId()}">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="" th:href="${'inprogress/' + task.getTaskId()}">In Progress</a></li>
                 </ul>
             </div>
-            <p class="title">Lorem ipsum it.</p>
-            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <p class="title" th:text="${task.getTaskTitle()}">Lorem ipsum it.</p>
+            <p class="description" th:text="${task.getTaskDescription()}">lorem ipsum dolor sit amet consectetur adip</p>
             <div class='bottom_actions'>
-                <p class="created_by">created by: Rebecca</p>
+                <p class="created_by" th:text="'Created by: ' + ${fullName}">created by: Rebecca</p>
                 <span class="view">view</span>
             </div>
         </div>
     </div>
+    <!--    Completed tasks end here-->
 </main>
 
 <!-- Modal -->
