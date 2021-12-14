@@ -1,7 +1,9 @@
 package com.week9.taskmanagerapp.controller;
 
 import com.week9.taskmanagerapp.model.Person;
+import com.week9.taskmanagerapp.model.TaskModel;
 import com.week9.taskmanagerapp.service.serviceImpl.PersonServiceImpl;
+import com.week9.taskmanagerapp.service.serviceImpl.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +14,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class PersonController {
 
     private final PersonServiceImpl personService;
+    private final TaskServiceImpl taskService;
 
     @Autowired
-    public PersonController(PersonServiceImpl personService) {
+    public PersonController(PersonServiceImpl personService, TaskServiceImpl taskService) {
         this.personService = personService;
+        this.taskService = taskService;
+    }
+
+    @GetMapping("/")
+    public String showHomePage(HttpServletRequest request, @ModelAttribute("person") Person person, Model model){
+
+        HttpSession session = request.getSession(false);
+
+        if(session != null){
+            List<TaskModel> list = taskService.getAllTasks();
+            model.addAttribute("taskList", list);
+            return "homePage";
+        }
+        return "index";
     }
 
     @PostMapping("/signup")
@@ -43,9 +61,12 @@ public class PersonController {
             return "index";
         }
 
-
         if(email.equals(person.getEmail()) && password.equals(person.getPassword())){
-            return "homePage";
+            HttpSession session = request.getSession();
+            session.setAttribute("personId", personService.getUserByEmail(email).getPersonId());
+            session.setAttribute("fullname", personService.getUserByEmail(email).getFirstName() + " " + personService.getUserByEmail(email).getFirstName());
+            System.out.println(personService.getUserByEmail(email).getPersonId());
+            return "redirect:/";
         }
         model.addAttribute("message", "false");
         return "index";

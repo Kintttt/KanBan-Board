@@ -2,9 +2,251 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500&display=swap"
+            rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{/homePage.css}" rel="stylesheet"/>
+    <title>Document</title>
 </head>
+
 <body>
-<div>Welcome home T!</div>
+
+<!--navbar starts here-->
+<nav class="navbar navbar-light" style="background-color: #7759ca; color: #fff">
+    <!-- Navbar content -->
+    <a class="navbar-brand text-white">KanbanTope</a>
+    <button type="button" class="btn btn-light">Logout</button>
+</nav>
+<!--navbar ends here-->
+
+<main class="container-fluid board">
+    <div class="column by_me">
+        <h3 class="label">
+            Created By Me
+            <span class="count">2</span>
+        </h3>
+        <div class="card">
+            <div class="dropdown">
+                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    </span>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="padding-left: 15px">Move To</li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="#">In Progress</a></li>
+                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                </ul>
+            </div>
+            <p class="title">Lorem ipsum it.</p>
+            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <div class='bottom_actions'>
+                <span class="tag completed">Completed</span>
+                <span class="view">view</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="dropdown">
+                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    </span>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="padding-left: 15px">Move To</li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="#">In Progress</a></li>
+                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                </ul>
+            </div>
+            <p class="title">Lorem ipsum it.</p>
+            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <div class='bottom_actions'>
+                <span class="tag backlog">Backlog</span>
+                <span class="view">view</span>
+            </div>
+        </div>
+    </div>
+
+<!--    Creating the backlogs row-->
+
+    <div class="column backlogs">
+        <h3 class="label">
+            Backlogs
+            <span class="count">2</span>
+        </h3>
+
+        <div class="card">
+            <div class="dropdown">
+                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    </span>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="padding-left: 15px">Move To</li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="#">In Progress</a></li>
+                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                </ul>
+            </div>
+            <p class="title">Lorem ipsum it.</p>
+            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <div class='bottom_actions'>
+                <p class="created_by">created by: Rebecca</p>
+                <span class="view">view</span>
+            </div>
+        </div>
+
+        <div class=" add " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add task
+        </div>
+    </div>
+
+<!--    backlogs ends here-->
+
+
+    <div class="column in_progress">
+        <h3 class="label">
+            In Progress
+            <span class="count">2</span>
+        </h3>
+
+        <div class="card">
+            <div class="dropdown">
+                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    </span>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="padding-left: 15px">Move To</li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="#">In Progress</a></li>
+                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                </ul>
+            </div>
+            <p class="title">Lorem ipsum it.</p>
+            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <div class='bottom_actions'>
+                <p class="created_by">created by: Rebecca</p>
+                <span class="view">view</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="dropdown">
+                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    </span>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="padding-left: 15px">Move To</li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="#">In Progress</a></li>
+                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                </ul>
+            </div>
+            <p class="title">Lorem ipsum it.</p>
+            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <div class='bottom_actions'>
+                <p class="created_by">created by: Rebecca</p>
+                <span class="view">view</span>
+            </div>
+        </div>
+    </div>
+    <div class="column completed">
+        <h3 class="label">
+            Completed
+            <span class="count">2</span>
+
+        </h3>
+        <div class="card">
+            <div class="dropdown">
+                    <span class="ellipsis dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    </span>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="padding-left: 15px">Move To</li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Backlogs</a></li>
+                    <li><a class="dropdown-item" href="#">In Progress</a></li>
+                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                </ul>
+            </div>
+            <p class="title">Lorem ipsum it.</p>
+            <p class="description">lorem ipsum dolor sit amet consectetur adip</p>
+            <div class='bottom_actions'>
+                <p class="created_by">created by: Rebecca</p>
+                <span class="view">view</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" th:action="@{/newTask}" method="post" th:object="${task}" >
+                    <div class="col-md-12">
+                        <label for="taskTitle" class="form-label" >Title</label>
+                        <input type="text" class="form-control" id="taskTitle" name = "taskTitle">
+                    </div>
+                    <div class="">
+                        <label for="description" class="form-label" >Description</label>
+                        <textarea class="form-control" id="dscription" name = "taskDescription"> </textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="type" class="form-label">Tag</label>
+                        <select class="form-select form-select mb-3" aria-label=".form-select example" name = "taskTag">
+                            <option selected disabled>Select Tag</option>
+                            <option value="bug">Bug</option>
+                            <option value="user story">User Story</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save</button>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
 </body>
+
 </html>
