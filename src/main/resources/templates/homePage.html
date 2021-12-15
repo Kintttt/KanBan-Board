@@ -48,7 +48,7 @@
                 </ul>
             </div>
             <p class="title" th:text="${task.getTaskTitle()}">Lorem ipsum it.</p>
-            <p class="description" th:text="${task.getTaskDescription()}">lorem ipsum dolor sit amet consectetur adip</p>
+            <p class="description" th:if="${task.getTaskDescription().length() > 10}" th:text="${task.getTaskDescription().substring(1, 25) + '...'}">lorem ipsum dolor sit amet consectetur adip</p>
             <div class='bottom_actions'>
                 <span class="tag completed">Completed</span>
                 <span class="view">view</span>
