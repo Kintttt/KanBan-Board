@@ -30,5 +30,11 @@ public class TaskServiceImpl implements TaskServices {
     public TaskModel getTaskById(Long id){
        return taskRepo.findById(id).get();
     }
+
+    public void deletePost(Long postId){
+
+        TaskModel model = taskRepo.findById(postId).get();
+        taskRepo.delete(model);
+    }
 }
 

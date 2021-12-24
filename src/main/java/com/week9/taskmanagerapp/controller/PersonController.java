@@ -70,8 +70,9 @@ public class PersonController {
         if(email.equals(person.getEmail()) && password.equals(person.getPassword())){
             HttpSession session = request.getSession();
             session.setAttribute("personId", personService.getUserByEmail(email).getPersonId());
-            session.setAttribute("fullName", personService.getUserByEmail(email).getFirstName() + " " + personService.getUserByEmail(email).getFirstName());
+            session.setAttribute("fullName", personService.getUserByEmail(email).getFirstName() + " " + personService.getUserByEmail(email).getLastName());
             System.out.println(personService.getUserByEmail(email).getPersonId());
+//            System.out.println(fullName);
             return "redirect:/";
         }
         model.addAttribute("message", "false");
